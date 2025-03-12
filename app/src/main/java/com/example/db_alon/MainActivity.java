@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (noteDAO.getAllNotes().isEmpty()) {
-                    noteDAO.insert(new Note("alon", 3, "10%"));
-                    noteDAO.insert(new Note("ben", 4, "30%"));
-                    noteDAO.insert(new Note("karin", 5, "40%"));
-                    noteDAO.insert(new Note("shai", 6, "20%"));
+                    noteDAO.insert(new Note("alon", 69, "10%"));
+                    noteDAO.insert(new Note("ben", 420, "30%"));
+                    noteDAO.insert(new Note("karin", 1, "40%"));
+                    noteDAO.insert(new Note("shai", 2, "20%"));
                 }
             }
         }).start();
