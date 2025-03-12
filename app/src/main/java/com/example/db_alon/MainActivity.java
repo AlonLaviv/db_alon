@@ -1,6 +1,5 @@
 package com.example.db_alon;
 
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,11 +15,9 @@ import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-
-
     TextView textView;
     Button button;
-    Random rn;
+    Random rnd;
     List<Note> noteList;
     NoteDAO noteDAO;
     @Override
@@ -33,40 +30,29 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-
-
-
-
-
-
         NoteDatabase database = NoteDatabase.getInstance(this);
         noteDAO = database.noteDao();
-        rn = new Random();
-
+        rnd = new Random();
         textView = findViewById(R.id.textView);
         button = findViewById(R.id.button);
-
-
         new Thread(new Runnable() {
             @Override
             public void run() {
-                if (noteDAO.getAllNotes().isEmpty()) { // Avoid inserting duplicates
-                    noteDAO.insert(new Note("hello", 3, "30%"));
-                    noteDAO.insert(new Note("hi", 4, "40%"));
-                    noteDAO.insert(new Note("yo", 5, "60%"));
+                if (noteDAO.getAllNotes().isEmpty()) {
+                    noteDAO.insert(new Note("alon", 3, "10%"));
+                    noteDAO.insert(new Note("ben", 4, "30%"));
+                    noteDAO.insert(new Note("karin", 5, "40%"));
+                    noteDAO.insert(new Note("shai", 6, "20%"));
                 }
             }
         }).start();
-
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 noteList = noteDAO.getAllNotes();
-                int randomIndex = rn.nextInt(noteList.size());
+                int randomIndex = rnd.nextInt(noteList.size());
                 Note randomNote = noteList.get(randomIndex);
-                textView.setText("ID: " + randomNote.getId() +"\nWords: " + randomNote.getWords() +"\nNumber: " + randomNote.getNumber() +"\nPercentage: " + randomNote.getA_hoze());
+                textView.setText("ID: " + randomNote.getId() + "\nWord: " + randomNote.getWords() + "\nNumber: " + randomNote.getNumber() + "\nPercentage: " + randomNote.getPercent());
             }
         });
     }

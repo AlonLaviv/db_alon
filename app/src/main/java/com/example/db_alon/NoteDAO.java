@@ -12,13 +12,10 @@ import java.util.List;
 public interface NoteDAO {
     @Insert
     void insert(Note note);
-
     @Update
     void update(Note note);
-
     @Delete
     void delete(Note note);
-
     @Query("SELECT * FROM notes")
     List<Note> getAllNotes();
 }
